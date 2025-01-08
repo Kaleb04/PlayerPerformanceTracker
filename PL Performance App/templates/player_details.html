@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Player Details</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+    <body>
+        <div class="top-container">
+            <div class="player-details">
+            <h1>{{ player.fname }}'s Details</h1>
+            <p><strong>Team:</strong> {{ player.team }}</p>
+            <p><strong>Gender:</strong> {{ player.gender }}</p>
+            <p><strong>Age:</strong> {{ player.age_level }}</p>
+            <p><strong>Achievements:</strong> {{ player.achievements }}</p>
+            <p><strong>Loyalty Points:</strong> {{ player.loyalty_points }}</p>
+            </div>
+            <div class="details-containertop">
+                <div class="skilldrop_stats">
+                    <div class="skill-dropdown">
+                        <h2>Skill Trials</h2>
+                        <label for="skill-select">Select Skill:</label>
+                        <select id="skill-select" onchange="updateSkillTrialsAndGraph()">
+                            {% for skill_id, skill_name in player_skills.items() %}
+                                <option value="{{ skill_id }}" {% if loop.first %}selected{% endif %}>{{ skill_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div id="skill-stats-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Total Trials</th>
+                                    <th>First Score</th>
+                                    <th>Last Score</th>
+                                    <th>High Score</th>
+                                    <th>Improvement</th>
+                                    <th>Percentage Improvement</th>
+                                    <th>Average Improvement</th>
+                                </tr>
+                            </thead>
+                            <tbody id="skill-stats-body">
+                                <tr>
+                                    <td id="total-trials"></td>
+                                    <td id="first-score"></td>
+                                    <td id="last-score"></td>
+                                    <td id="best-score"></td>
+                                    <td id="improvement"></td>
+                                    <td id="percentage-improvement"></td>
+                                    <td id="average-score"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <!-- Skill Dropdown Section -->
+                
+            
+                <!-- Scrollable Trials View -->
+                <div id="skill-container" style="display: flex; gap: 20px; margin-top: 10px;">
+                    <!-- Skill Trials Section -->
+                    <div id="skill-trials-container">
+                        <h2>Skill Trials</h2>
+                        <p>Select a skill to view trials.</p>
+                    </div>
+                
+                    <!-- Skill Graph Section -->
+                    <div id="skill-graph-container" style="flex: 1;">
+                        <img id="skill-graph-image" src="" alt="Skill Graph" style="width: 100%; height: auto;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="details-container">
+            <!-- Recent Scores Section -->
+            <div class="recent-scores">
+                <h2>Recent Scores</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Skill Challenge</th>
+                            <th>Score</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for skill in recent_skill_data %}
+                            <tr>
+                                <td>{{ skill.skill_name }}</td>
+                                <td>
+                                    <!-- Editable score field -->
+                                    <input 
+                                        type="number" 
+                                        value="{{ skill.score }}" 
+                                        step="0.01" 
+                                        id="score-{{ skill.id }}" 
+                                        onchange="updateScore({{ skill.id }})"
+                                    />
+                                </td>
+                                <td>{{ skill.date }}</td>
+                                <td>
+                                    <!-- Delete button -->
+                                    <form action="{{ url_for('delete_score', score_id=skill.id) }}" method="POST" style="display: inline;">
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this score?')">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        
+            <!-- Performance Graph Section -->
+            <div class="performance-graph">
+                <h2>All Skills Graph</h2>
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <label for="view-toggle">Switch to:</label>
+                    <input type="checkbox" id="view-toggle" onchange="toggleView()" />
+                    <span id="toggle-label">Timeline View</span>
+                </div>
+                <img id="graph-image" src="{{ trials_graph_url }}" alt="Performance Graph" />
+            </div>
+        </div>
+        <a href="/" class="back-to-home-btn">Back to Home</a>
+        
+    </body>
+    <script>
+        const timelineGraphUrl = "{{ timeline_graph_url }}";
+        const trialsGraphUrl = "{{ trials_graph_url }}";
+        const playerId = {{ player.id }};
+        const skillTrials = {{ skill_trials | tojson }};
+        const skillStats = {{ skill_stats | tojson }};
+    </script>
+    <script src="{{ url_for('static', filename='player_details.js') }}"></script>
+    
+</html>

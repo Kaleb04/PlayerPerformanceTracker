@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;700&display=swap" rel="stylesheet">
+    <title>Index Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+    <body>
+        <h1>Welcome to the PL Performance App</h1>
+        <!-- Search for a Player -->
+        <h2>Search for Player Details</h2>
+        <div style="position: relative;">
+            <label for="search_player_name">Search Player Details:</label>
+            <input type="text" id="search_player_name" onkeyup="searchPlayerDetails()" onclick="searchPlayerDetails()" placeholder="Enter player name" autocomplete="off">
+            <div id="player_details_results"></div>
+        </div>
+    
+        <!-- Add a New Score -->
+        <h2>Add a New Score</h2>
+        <form action="/add_score" method="POST"onsubmit="return validateAddScoreForm()">
+            <!-- Search Player -->
+            <label for="player_name">Search Player:</label>
+            <input type="text" id="player_name" onkeyup="searchPlayers()" onclick="searchPlayers()" placeholder="Search for a player" autocomplete="off">
+            <input type="hidden" id="player_id" name="player_id">
+            <div id="player_results"></div>
+            <!-- Skill Challenge Dropdown -->
+            <label for="skill_id">Skill Challenge:</label>
+            <select id="skill_id" name="skill_id" required>
+                {% for skill in skill_challenges %}
+                    <option value="{{ skill.id }}">{{ skill.name }}</option>
+                {% endfor %}
+            </select>
+            
+            <label for="score">Score:</label>
+            <input type="number" id="score" name="score" required min="0" step="0.01">
+            <button type="submit">Add Score</button>
+        </form>
+
+        <!-- Add a New Player -->
+        <h2>Add a New Player</h2>
+        <form action="/add_player" method="POST">
+            <label for="fname">Full Name:</label>
+            <input type="text" id="fname" name="fname" required>
+            
+            <label for="team">Team:</label>
+            <select id="team" name="team">
+                <option value="MV">MV</option>
+                <option value="WB">WB</option>
+                <option value="Other">Other</option>
+            </select>
+            
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            
+            <label for="age_level">Age:</label>
+            <input type="text" id="age_level" name="age_level">
+            
+            <button type="submit">Add Player</button>
+        </form>
+
+        <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+    </body>
+</html>
+

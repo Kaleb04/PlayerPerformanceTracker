@@ -1,0 +1,195 @@
+body {
+    background-color: #083c64; /* Replace with the exact color code */
+    color: white; /* Optional: Set text color to make it readable */
+    font-family: 'Exo', sans-serif;
+}
+#player_name {
+    width: 200px; /* Match the width of the input field */
+    position: relative; /* Anchor the dropdown positioning to this input */
+}
+#player_results {
+    border: 1px solid #ccc;
+    max-height: 120px; /* Limit the height */
+    width: 197px; /* Limit the width */
+    overflow-y: auto; /* Enable scrolling */
+    display: none; /* Hide dropdown by default */
+    background-color: white; /* Ensure a visible background */
+    position: absolute; /* Align dropdown under the input field */
+    z-index: 1000; /* Keep it above other elements */
+    font-size: 14px; /* Set a readable font size */
+    padding: 5px; /* Add padding around dropdown items */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    left: 117px;
+}
+
+#player_results div {
+    padding: 6px; /* Add padding for dropdown items */
+    cursor: pointer; /* Indicate clickability */
+    color: black; /* Ensure text is visible */
+    background-color: white; /* Match the dropdown background */
+}
+
+#player_details_results {
+    border: 1px solid #ccc;
+    max-height: 120px; /* Limit the height */
+    width: 197px; /* Limit the width */
+    overflow-y: auto; /* Enable scrolling */
+    display: none; /* Hide dropdown by default */
+    background-color: white; /* Ensure a visible background */
+    position: absolute; /* Align dropdown under the input field */
+    z-index: 1000; /* Keep it above other elements */
+    font-size: 14px; /* Set a readable font size */
+    padding: 5px; /* Add padding around dropdown items */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    left: 117px;
+}
+
+#player__details_results div {
+    padding: 6px; /* Add padding for dropdown items */
+    cursor: pointer; /* Indicate clickability */
+    color: black; /* Ensure text is visible */
+    background-color: white; /* Match the dropdown background */
+}
+
+#player_details_results div {
+    padding: 8px; /* Add padding for dropdown items */
+    cursor: pointer; /* Indicate clickability */
+    color: black; /* Set text color for items */
+    background-color: white; /* Match the dropdown background */
+}
+
+#player_details_results div:hover {
+    background-color: #f0f0f0; /* Highlight items on hover */
+    color: black; /* Ensure text remains visible */
+}
+.details-container {
+    display: flex; /* Use flexbox for layout */
+    align-items: flex-start; /* Align items at the top */
+    gap: 20px; /* Add space between the sections */
+    margin-top: 20px; /* Add some space above the container */
+}
+
+.recent-scores {
+    flex: 1; /* Allow the table to take up available space */
+    margin-right: 20px; /* Add spacing between the table and the graph */
+}
+
+.performance-graph {
+    flex: 1; /* Allow the graph to take up available space */
+    text-align: center; /* Center the graph title and image */
+}
+
+.performance-graph img {
+    max-width: 100%; /* Ensure the graph image scales responsively */
+    height: auto; /* Maintain aspect ratio */
+    border: 1px solid #ccc; /* Add a border to the graph */
+    padding: 10px; /* Add some padding inside the border */
+    background-color: white; /* Add a background to the graph */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+table {
+    width: 100%; /* Optional: Adjust table width */
+    border-collapse: collapse; /* Ensures no double borders */
+}
+
+th, td {
+    padding: 10px 20px; /* Adds space inside cells */
+    text-align: left; /* Aligns text to the left */
+}
+
+th {
+    font-size: 18px; /* Makes header text larger */
+    font-weight: bold; /* Ensures bold text for headers */
+}
+
+td {
+    font-size: 13px;
+}
+
+.back-to-home-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #083c64; /* Matches your background */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.back-to-home-btn:hover {
+    background-color: #0a4d85; /* Slightly lighter shade */
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.back-to-home-btn:active {
+    background-color: #072a44; /* Darker shade when clicked */
+    transform: scale(0.98); /* Slight compression on click */
+}
+
+.top-container {
+    display: flex;               /* Use flexbox for layout */
+    align-items: flex-start;     /* Align items at the top */
+    margin-top: 10px;
+}
+
+.player-details {
+    width: 30%;                  /* Width for the left section */
+    padding: 15px;               /* Add some padding for spacing */
+}
+
+.details-containertop {
+    text-align: left;           /* Width for the right section */
+    margin-left: 20%;
+    margin-top: 15px;
+}
+
+.skill-dropdown {
+    flex: 0 0 auto; 
+}
+
+#skill-trials-container {
+    flex: 1;
+     max-height: 200px; 
+     max-width: 220px;
+     overflow-y: auto; 
+}
+#skill-stats-container {
+    flex:1;
+    padding: 15px;
+    border-radius: 5px;
+    margin-left: 6%;
+}
+
+#skill-stats-container table {
+    width: 40%;
+    border-collapse: collapse;
+}
+
+#skill-stats-container th, #skill-stats-container td {
+    padding: 10px;
+    font-size: 12px;
+    text-align: center;
+}
+
+#skill-stats-container th {
+    background-color: #083c64;
+    color: white;
+}
+
+#skill-stats-container td {
+    font-size: 12px;
+    outline: #f0f0f0;
+}
+.skilldrop_stats {
+    display: flex;
+    gap: 20px; /* Adds space between dropdown and stats table */
+    align-items: flex-start; /* Aligns both sections to the top */
+}
+
